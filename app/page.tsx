@@ -3,8 +3,7 @@ import Image from "next/image";
 import { fetchCars } from "@/utils";
 import { fuels, yearsOfProduction } from "@/constants";
 
-export default async function Home({ searchParams }) {
-  console.log(searchParams);
+export default async function Home({ searchParams }: any) {
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
@@ -12,7 +11,6 @@ export default async function Home({ searchParams }) {
     limit: searchParams.limit || 10,
     model: searchParams.model || "",
   });
-  console.log(allCars);
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
   return (
     <main className="overflow-hidden">
